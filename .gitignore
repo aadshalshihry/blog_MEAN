@@ -62,6 +62,3 @@ bower_components
 # vim Files
 # --------------------
 *.swp
-
-#webpack
-/bundle
