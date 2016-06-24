@@ -1,0 +1,17 @@
+{
+  "name": "blog",
+  "description": "To Try out MEAN And see how it working",
+  "main": "index.js",
+  "authors": [
+    "Roman"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/aadshalshihry/blog_MEAN",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
