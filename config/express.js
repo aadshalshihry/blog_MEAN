@@ -42,6 +42,7 @@ module.exports = function () {
   require('../app/routes/about.server.routes.js')(app);
   require('../app/routes/users.server.routes.js')(app);
   require('../app/routes/posts.server.routes.js')(app);
+  require('../app/routes/articles.server.routes.js')(app);
 
   // call for static files always below the call of routes to make faster
   app.use(express.static('./public'));
