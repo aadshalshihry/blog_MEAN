@@ -10,7 +10,7 @@ Authentication, Articles) {
       content: this.content
     });
 
-    article.save(function (response) {
+    article.$save(function (response) {
       $location.path('articles/' + response._id);
     }, function (errorResponse) {
       $scope.error = errorResponse.data.message;
@@ -45,10 +45,10 @@ Authentication, Articles) {
         }
       });
     } else {
-      $scope.artilce.$remove(function () {
+      $scope.article.$remove(function () {
         $location.path('articles');
       });
     }
   };
-  
+
 }]);

@@ -11,18 +11,39 @@ var getErrorMessage = function (err) {
     return 'Unknown server error';
   }
 }
-exports.create = function (req, res, next) {
+exports.createOld = function (req, res, next) {
   var article = new Article(req.body);
   article.creator = req.user;
   article.save(function (err) {
     if(err){
       return res.status(400).send({
-        message: getErrorMessage(err);
+        message: getErrorMessage(err)
       });
     } else {
       res.json(article);
     }
   });
+};
+
+exports.create = function(req, res) {
+	// Create a new article object
+	var article = new Article(req.body);
+
+	// Set the article's 'creator' property
+	article.creator = req.user;
+
+	// Try saving the article
+	article.save(function(err) {
+		if (err) {
+			// If an error occurs send the error message
+			return res.status(400).send({
+				message: getErrorMessage(err)
+			});
+		} else {
+			// Send a JSON representation of the article
+			res.json(article);
+		}
+	});
 };
 
 exports.listOld = function (req, res, next) {
@@ -40,7 +61,7 @@ exports.list = function (req, res) {
   .exec(function (err, articles) {
     if(err){
       return res.status(400).send({
-        message: getErrorMessage(err);
+        message: getErrorMessage(err)
       });
     } else {
       res.json(articles);
@@ -66,7 +87,7 @@ exports.articleByID_old = function (req, res, next, id) {
 };
 
 exports.articleByID = function (req, res, next, id) {
-    article.findOne(id).populate('creator', 'firstName lastName fullName')
+    Article.findOne(id).populate('creator', 'firstName lastName fullName')
     .exec(function (err, article) {
       if(err) return next(err);
       if(!article) return next(new Error('Faild to load article ' + id));
@@ -95,7 +116,7 @@ exports.update = function (req, res) {
   article.save(function (err) {
     if(err){
       return res.status(400).send({
-        message: getErrorMessage(err);
+        message: getErrorMessage(err)
       });
     } else {
       res.json(article);
@@ -109,7 +130,7 @@ exports.delete = function (req, res) {
   article.remove(function (err) {
     if(err){
       return res.status(400).send({
-        message: getErrorMessage(err);
+        message: getErrorMessage(err)
       });
     } else {
       res.json(article);
@@ -125,15 +146,6 @@ exports.deleteOld = function (req, res, next) {
       res.json(req.article);
     }
   });
-};
-
-exports.requiresLogin = function (req, res, next) {
-  if(!req.isAuthenticated()){
-    return res.status(401).send({
-      message: 'User is not logged in'
-    });
-  }
-  next();
 };
 
 exports.hasAuthorization = function (req, res, next) {

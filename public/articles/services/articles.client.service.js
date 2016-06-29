@@ -1,7 +1,7 @@
 
 angular.module('articles').factory('Articles',
 ['$resource', function ($resource) {
- return $resource('api/aricles/:articleId',{
+ return $resource('api/articles/:articleId',{
    articleId: '@_id'
  }, {
    update: {

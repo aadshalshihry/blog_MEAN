@@ -5,7 +5,7 @@
   <title><%= title %></title>
 </head>
 <body>
-  <% if (user) { %>
+  <!-- <% if (user) { %>
     <h2>Hello <%=userFullName %></h2>
     <a href="/signout">Sign out</a>
   <% } else { %>
@@ -17,11 +17,9 @@
   <h1><%= title %></h1>
   <p>Rendering form views</p>
   <a href="/about">About</a>
-  <a href="/users">Users Info</a>
+  <a href="/users">Users Info</a> -->
+  
   <section ng-view></section>
-  <!-- <section ng-include="'example/views/example.client.view.html'"></section> -->
-
-  <!-- <img src="img/logo.png" alt="logo"> -->
 
   <script type="text/javascript">
     window.user = <%- user || 'null' %>
@@ -32,10 +30,17 @@
 	<script type="text/javascript" src="/lib/angular-route/angular-route.js"></script>
 	<script type="text/javascript" src="/lib/angular-resource/angular-resource.js"></script>
 
+  <!-- Load the example module -->
+  <script type="text/javascript" src="/example/example.client.module.js"></script>
+  <script type="text/javascript" src="/example/controllers/example.client.controller.js"></script>
+  <script type="text/javascript" src="/example/config/example.client.routes.js"></script>
+
 	<!-- Load the example module -->
-	<script type="text/javascript" src="/example/example.client.module.js"></script>
-	<script type="text/javascript" src="/example/controllers/example.client.controller.js"></script>
-	<script type="text/javascript" src="/example/config/example.client.routes.js"></script>
+	<script type="text/javascript" src="/articles/articles.client.module.js"></script>
+	<script type="text/javascript" src="/articles/controllers/articles.client.controller.js"></script>
+	<script type="text/javascript" src="/articles/services/articles.client.service.js"></script>
+	<script type="text/javascript" src="/articles/config/articles.client.routes.js"></script>
+
 
 	<!-- Load the users module -->
   <script type="text/javascript" src="/users/temp/users.client.module.js"></script>

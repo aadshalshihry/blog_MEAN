@@ -1,11 +1,10 @@
 var users = require('../../app/controllers/users.server.controller'),
-var articles = require('../../app/controllers/articles.server.controller'),
-    passport = require('passport');
+    articles = require('../../app/controllers/articles.server.controller');
 
 module.exports = function (app) {
   app.route('/api/articles')
-  .post(users.requiresLogin, articles.create)
-  .get(articles.list);
+  .get(articles.list)
+  .post(users.requiresLogin, articles.create);
 
   app.route('/api/articles/:articleId')
     .get(articles.read)
